@@ -1,6 +1,5 @@
-BITCOIND=bitcoind
-BITCOINGUI=bitcoin-qt
-BITCOINCLI=bitcoin-cli
+DYNAMOD_TEST=dynamod-test
+DYNAMO_CLI_TEST=dynamo-cli-test
 B1_FLAGS=
 B2_FLAGS=
 B1=-datadir=1 $(B1_FLAGS)
@@ -11,42 +10,38 @@ AMOUNT=
 ACCOUNT=
 
 start:
-	$(BITCOIND) $(B1) -daemon
-	$(BITCOIND) $(B2) -daemon
-
-start-gui:
-	$(BITCOINGUI) $(B1) &
-	$(BITCOINGUI) $(B2) &
+	$(DYNAMOD_TEST) $(B1) -daemon
+	$(DYNAMOD_TEST) $(B2) -daemon
 
 generate:
-	$(BITCOINCLI) $(B1) -generate $(BLOCKS)
+	$(DYNAMO_CLI_TEST) $(B1) -generate $(BLOCKS)
 
 getinfo:
-	$(BITCOINCLI) $(B1) -getinfo
-	$(BITCOINCLI) $(B2) -getinfo
+	$(DYNAMO_CLI_TEST) $(B1) -getinfo
+	$(DYNAMO_CLI_TEST) $(B2) -getinfo
 
 sendfrom1:
-	$(BITCOINCLI) $(B1) sendtoaddress $(ADDRESS) $(AMOUNT)
+	$(DYNAMO_CLI_TEST) $(B1) sendtoaddress $(ADDRESS) $(AMOUNT)
 
 sendfrom2:
-	$(BITCOINCLI) $(B2) sendtoaddress $(ADDRESS) $(AMOUNT)
+	$(DYNAMO_CLI_TEST) $(B2) sendtoaddress $(ADDRESS) $(AMOUNT)
 
 address1:
-	$(BITCOINCLI) $(B1) getnewaddress $(ACCOUNT)
+	$(DYNAMO_CLI_TEST) $(B1) getnewaddress $(ACCOUNT)
 
 address2:
-	$(BITCOINCLI) $(B2) getnewaddress $(ACCOUNT)
+	$(DYNAMO_CLI_TEST) $(B2) getnewaddress $(ACCOUNT)
 
 stop:
-	$(BITCOINCLI) $(B1) stop
-	$(BITCOINCLI) $(B2) stop
+	$(DYNAMO_CLI_TEST) $(B1) stop
+	$(DYNAMO_CLI_TEST) $(B2) stop
 
 clean:
-	find 1/regtest/* -not -name 'server.*' -delete
-	find 2/regtest/* -not -name 'server.*' -delete
+	find 1/* -not -name 'dynamo.conf' -delete
+	find 2/* -not -name 'dynamo.conf' -delete
 
 docker-build:
-	docker build --tag bitcoin-testnet-box .
+	docker build --tag dynamo-testnet-box .
 
 docker-run:
-	docker run -ti bitcoin-testnet-box
+	docker run -it --rm -p 19001:19001 -p 19011:19011 --name dynamo-testnet-box dynamo-testnet-box
