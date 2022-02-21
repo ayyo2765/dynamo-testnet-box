@@ -2,7 +2,9 @@
 
 Create your own private dynamo testnet docker container
 
-# Required host packages
+## Required host packages
+
+Host should already have docker installed
 
 ```
 $ apt install make guile-2.2 libgc-dev
@@ -10,16 +12,31 @@ $ apt install make guile-2.2 libgc-dev
 
 ## Building dynamo-testnet-box image
 
+Built image will be tagged `dynamo-testnet-box`
+
 ```
 $ make docker-build
 ```
 
 ## Starting dynamo-testnet-box container
 
+`docker-temp` will be removed on exit
+
+```
+$ make docker-temp
+```
+
+`docker-run` will leave the container after exit to be resumed later
+
 ```
 $ make docker-run
 ```
 
+`docker-rm` can be used to remove existing container named `dynamo-testnet-box`
+
+```
+$ make docker-rm
+```
 
 ## Starting the testnet 
 
@@ -91,10 +108,9 @@ dynamo-cli-test -datadir=2 createwallet wallet2
 
 ## Generating blocks
 
-Normally on the live, real, dynamo network, blocks are generated, on average,
-every 10 minutes. Since this testnet-in-box uses Dynamo Core's (dynamod)
-regtest mode, we are able to generate a block on a private network
-instantly using a simple command.
+Normally on the live, real, dynamo network, blocks are generated, 
+on average, every 15 seconds. Since this testnet-in-box uses Dynamo's (dynamod), 
+we are able to generate a block on a private network instantly using a simple command.
 
 To generate a block:
 
