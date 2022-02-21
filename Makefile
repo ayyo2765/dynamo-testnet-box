@@ -43,5 +43,14 @@ clean:
 docker-build:
 	docker build --tag dynamo-testnet-box .
 
-docker-run:
+docker-temp:
 	docker run -it --rm -p 19001:19001 -p 19011:19011 --name dynamo-testnet-box dynamo-testnet-box
+	
+docker-run:
+	docker run -it -p 19001:19001 -p 19011:19011 --name dynamo-testnet-box dynamo-testnet-box
+	
+docker-start:
+	docker start -i dynamo-testnet-box
+
+docker-rm:
+	docker rm dynamo-testnet-box
