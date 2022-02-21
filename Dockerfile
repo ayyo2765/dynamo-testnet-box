@@ -5,7 +5,7 @@ FROM ubuntu:bionic
 # install dependencies - do not set as ENV 
 RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive TZ=America/New_York \
-	apt-get install --yes vim make wget net-tools libboost-all-dev libdb5.3++-dev libevent-dev
+	apt-get install --yes vim less net-tools make wget libboost-all-dev libdb5.3++-dev libevent-dev
 
 # create a non-root user
 RUN adduser --disabled-login --gecos "" tester
