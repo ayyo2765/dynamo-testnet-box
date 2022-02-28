@@ -1,5 +1,9 @@
-DYNAMOD_TEST=dynamod-test
-DYNAMO_CLI_TEST=dynamo-cli-test
+COIN=foxdcoin
+
+D=$(COIN)d
+CLI=$(COIN)-cli
+CONFIG=$(COIN).conf
+
 B1_FLAGS=
 B2_FLAGS=
 B1=-datadir=1 $(B1_FLAGS)
@@ -10,47 +14,47 @@ AMOUNT=
 ACCOUNT=
 
 start:
-	$(DYNAMOD_TEST) $(B1) -daemon
-	$(DYNAMOD_TEST) $(B2) -daemon
+	$(D) $(B1) -daemon
+	$(D) $(B2) -daemon
 
 generate:
-	$(DYNAMO_CLI_TEST) $(B1) -generate $(BLOCKS)
+	$(CLI) $(B1) -generate $(BLOCKS)
 
 getinfo:
-	$(DYNAMO_CLI_TEST) $(B1) -getinfo
-	$(DYNAMO_CLI_TEST) $(B2) -getinfo
+	$(CLI) $(B1) -getinfo
+	$(CLI) $(B2) -getinfo
 
 sendfrom1:
-	$(DYNAMO_CLI_TEST) $(B1) sendtoaddress $(ADDRESS) $(AMOUNT)
+	$(CLI) $(B1) sendtoaddress $(ADDRESS) $(AMOUNT)
 
 sendfrom2:
-	$(DYNAMO_CLI_TEST) $(B2) sendtoaddress $(ADDRESS) $(AMOUNT)
+	$(CLI) $(B2) sendtoaddress $(ADDRESS) $(AMOUNT)
 
 address1:
-	$(DYNAMO_CLI_TEST) $(B1) getnewaddress $(ACCOUNT)
+	$(CLI) $(B1) getnewaddress $(ACCOUNT)
 
 address2:
-	$(DYNAMO_CLI_TEST) $(B2) getnewaddress $(ACCOUNT)
+	$(CLI) $(B2) getnewaddress $(ACCOUNT)
 
 stop:
-	$(DYNAMO_CLI_TEST) $(B1) stop
-	$(DYNAMO_CLI_TEST) $(B2) stop
+	$(CLI) $(B1) stop
+	$(CLI) $(B2) stop
 
 clean:
-	find 1/* -not -name 'dynamo.conf' -delete
-	find 2/* -not -name 'dynamo.conf' -delete
+	find 1/* -not -name \'$(CONFIG)\' -delete
+	find 2/* -not -name \'$(CONFIG)\' -delete
 
 docker-build:
-	docker build --tag dynamo-testnet-box .
+	docker build --tag $(COIN)-testnet-box .
 
 docker-temp:
-	docker run -it --rm -p 19001:19001 -p 19011:19011 --name dynamo-testnet-box dynamo-testnet-box
+	docker run -it --rm -p 19001:19001 -p 19011:19011 --name $(COIN)-testnet-box $(COIN)-testnet-box
 	
 docker-run:
-	docker run -it -p 19001:19001 -p 19011:19011 --name dynamo-testnet-box dynamo-testnet-box
+	docker run -it -p 19001:19001 -p 19011:19011 --name $(COIN)-testnet-box $(COIN)-testnet-box
 	
 docker-start:
-	docker start -i dynamo-testnet-box
+	docker start -i $(COIN)-testnet-box
 
 docker-rm:
-	docker rm dynamo-testnet-box
+	docker rm $(COIN)-testnet-box
