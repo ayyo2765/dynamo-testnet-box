@@ -1,6 +1,6 @@
-# dynamo-testnet-box
+# testnet-box
 
-Create your own private dynamo testnet docker container
+Create your own private testnet docker container
 
 ## Required host packages
 
@@ -10,15 +10,15 @@ Host should already have docker installed
 $ apt install make guile-2.2 libgc-dev
 ```
 
-## Building dynamo-testnet-box image
+## Building testnet-box image
 
-Built image will be tagged `dynamo-testnet-box`
+Built image will be tagged `testnet-box`
 
 ```
 $ make docker-build
 ```
 
-## Starting dynamo-testnet-box container
+## Starting testnet-box container
 
 `docker-temp` will be removed on exit
 
@@ -32,7 +32,7 @@ $ make docker-temp
 $ make docker-run
 ```
 
-`docker-rm` can be used to remove existing container named `dynamo-testnet-box`
+`docker-rm` can be used to remove existing container named `testnet-box`
 
 ```
 $ make docker-rm
@@ -59,7 +59,7 @@ $ make start
 
 ```
 $ make getinfo
-dynamo-cli-test -datadir=1  -getinfo
+coin-cli -datadir=1  -getinfo
 {
   "version": 219900,
   "blocks": 0,
@@ -77,7 +77,7 @@ dynamo-cli-test -datadir=1  -getinfo
   "relayfee": 0.00001000,
   "warnings": "This is a pre-release test build - use at your own risk - do not use for mining or merchant applications"
 }
-dynamo-cli-test -datadir=2  -getinfo
+coin-cli -datadir=2  -getinfo
 {
   "version": 219900,
   "blocks": 0,
@@ -99,18 +99,18 @@ dynamo-cli-test -datadir=2  -getinfo
 ## Creating wallets
 
 ```
-dynamo-cli-test -datadir=1 createwallet wallet1
+coin-cli -datadir=1 createwallet wallet1
 ```
 
 ```
-dynamo-cli-test -datadir=2 createwallet wallet2
+coin-cli -datadir=2 createwallet wallet2
 ```
 
 ## Generating blocks
 
-Normally on the live, real, dynamo network, blocks are generated, 
-on average, every 15 seconds. Since this testnet-in-box uses Dynamo's (dynamod), 
-we are able to generate a block on a private network instantly using a simple command.
+Normally on the live, real, network, blocks are generated, 
+on average, every 15 seconds. Since this testnet-in-box uses a private network, 
+we are able to generate a block instantly using a simple command.
 
 To generate a block:
 
@@ -139,8 +139,8 @@ $ make getinfo
 $ make address2
 ```
 
-## Sending dynamo
-To send dynamo that you've generated to the second wallet: (be sure to change the ADDRESS value below to wallet address generated in the prior command)
+## Sending coin
+To send coin that you've generated to the second wallet: (be sure to change the ADDRESS value below to wallet address generated in the prior command)
 
 ```
 $ make sendfrom1 ADDRESS=dyq1... AMOUNT=10

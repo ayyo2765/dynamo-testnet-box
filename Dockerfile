@@ -1,4 +1,4 @@
-# dynamo-testnet-box docker image
+# testnet-box docker image
 
 FROM ubuntu:bionic
 
@@ -13,34 +13,34 @@ RUN adduser --disabled-login --gecos "" tester
 # run following commands from user's home directory
 WORKDIR /home/tester
 
-ENV DYNAMO_CORE_VERSION "21.99.0"
+ENV CORE_URL "<add URL to coin .tar.gz>"
 
-# download and install dynamo binaries
+# download and install binaries
 RUN mkdir tmp \
 	&& cd tmp \
-	&& wget "https://github.com/ayyo2765/dynamo-testnet-box/raw/master/dynamo-test-${DYNAMO_CORE_VERSION}-x86_64-linux-gnu.tar.gz" \
-	&& tar xzf "dynamo-test-${DYNAMO_CORE_VERSION}-x86_64-linux-gnu.tar.gz" \
-	&& cd "dynamo-test-${DYNAMO_CORE_VERSION}/bin" \
+	&& wget "${CORE_URL}" \
+	&& tar xzf "$(basename ${CORE_URL})" \
+	&& cd "$(basename -s .tar.gz ${CORE_URL})/bin" \
 	&& install --mode 755 --target-directory /usr/local/bin *
 
 # clean up
 RUN rm -r tmp
 
 # copy the testnet-box files into the image
-ADD . /home/tester/dynamo-testnet-box
+ADD . /home/tester/testnet-box
 
-# make tester user own the dynamo-testnet-box
-RUN chown -R tester:tester /home/tester/dynamo-testnet-box
+# make tester user own the testnet-box
+RUN chown -R tester:tester /home/tester/testnet-box
 
 # color PS1
-RUN mv /home/tester/dynamo-testnet-box/.bashrc /home/tester/ && \
+RUN mv /home/tester/testnet-box/.bashrc /home/tester/ && \
 	cat /home/tester/.bashrc >> /etc/bash.bashrc
 
 # use the tester user when running the image
 USER tester
 
 # run commands from inside the testnet-box directory
-WORKDIR /home/tester/dynamo-testnet-box
+WORKDIR /home/tester/testnet-box
 
 # expose two rpc ports for the nodes to allow outside container access
 EXPOSE 19001 19011
