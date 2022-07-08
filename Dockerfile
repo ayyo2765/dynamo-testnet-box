@@ -5,7 +5,7 @@ FROM ubuntu:bionic
 # install dependencies - do not set as ENV 
 RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive TZ=America/New_York \
-	apt-get install --yes vim less net-tools make wget libevent-dev software-properties-common && \
+	apt-get install --yes vim less net-tools make wget libboost-all-dev libevent-dev software-properties-common && \
 	add-apt-repository -y ppa:bitcoin/bitcoin && \
 	apt-get install --yes libdb4.8-dev libdb4.8++-dev 
 

@@ -59,7 +59,7 @@ $ make start
 
 ```
 $ make getinfo
-coin-cli -datadir=1  -getinfo
+foxdcoin-cli -datadir=1  -getinfo
 {
   "version": 219900,
   "blocks": 0,
@@ -77,7 +77,7 @@ coin-cli -datadir=1  -getinfo
   "relayfee": 0.00001000,
   "warnings": "This is a pre-release test build - use at your own risk - do not use for mining or merchant applications"
 }
-coin-cli -datadir=2  -getinfo
+foxdcoin-cli -datadir=2  -getinfo
 {
   "version": 219900,
   "blocks": 0,
@@ -99,11 +99,11 @@ coin-cli -datadir=2  -getinfo
 ## Creating wallets
 
 ```
-coin-cli -datadir=1 createwallet wallet1
+foxdcoin-cli -datadir=1 createwallet wallet1
 ```
 
 ```
-coin-cli -datadir=2 createwallet wallet2
+foxdcoin-cli -datadir=2 createwallet wallet2
 ```
 
 ## Generating blocks
