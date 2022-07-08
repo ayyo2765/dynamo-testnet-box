@@ -1,4 +1,4 @@
-COIN=<Add coin name here>
+COIN=pulsar
 
 D=$(COIN)d
 CLI=$(COIN)-cli
@@ -18,7 +18,7 @@ start:
 	$(D) $(B2) -daemon
 
 generate:
-	$(CLI) $(B1) -generate $(BLOCKS)
+	$(CLI) $(B1) generate $(BLOCKS)
 
 getinfo:
 	$(CLI) $(B1) -getinfo

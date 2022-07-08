@@ -59,51 +59,51 @@ $ make start
 
 ```
 $ make getinfo
-coin-cli -datadir=1  -getinfo
+pulsar-cli -datadir=1  -getinfo
 {
-  "version": 219900,
+  "version": 1010200,
+  "protocolversion": 80012,
+  "walletversion": 159900,
+  "balance": 0.000000,
   "blocks": 0,
-  "headers": 0,
-  "verificationprogress": 1,
   "timeoffset": 0,
-  "connections": {
-    "in": 1,
-    "out": 0,
-    "total": 1
-  },
+  "connections": 1,
   "proxy": "",
-  "difficulty": 1.52587890625e-05,
-  "chain": "main",
-  "relayfee": 0.00001000,
-  "warnings": "This is a pre-release test build - use at your own risk - do not use for mining or merchant applications"
+  "difficulty": 1,
+  "testnet": true,
+  "keypoololdest": 1657311222,
+  "keypoolsize": 999,
+  "paytxfee": null,
+  "relayfee": null,
+  "warnings": ""
 }
-coin-cli -datadir=2  -getinfo
+pulsar-cli -datadir=2  -getinfo
 {
-  "version": 219900,
+  "version": 1010200,
+  "protocolversion": 80012,
+  "walletversion": 159900,
+  "balance": 0.000000,
   "blocks": 0,
-  "headers": 0,
-  "verificationprogress": 1,
   "timeoffset": 0,
-  "connections": {
-    "in": 0,
-    "out": 1,
-    "total": 1
-  },
+  "connections": 1,
   "proxy": "",
-  "difficulty": 1.52587890625e-05,
-  "chain": "main",
-  "relayfee": 0.00001000,
-  "warnings": "This is a pre-release test build - use at your own risk - do not use for mining or merchant applications"
+  "difficulty": 1,
+  "testnet": true,
+  "keypoololdest": 1657311222,
+  "keypoolsize": 999,
+  "paytxfee": null,
+  "relayfee": null,
+  "warnings": ""
 }
 ```
 ## Creating wallets
 
 ```
-coin-cli -datadir=1 createwallet wallet1
+pulsar-cli -datadir=1 createwallet wallet1
 ```
 
 ```
-coin-cli -datadir=2 createwallet wallet2
+pulsar-cli -datadir=2 createwallet wallet2
 ```
 
 ## Generating blocks

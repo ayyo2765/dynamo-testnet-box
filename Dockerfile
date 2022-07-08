@@ -5,7 +5,13 @@ FROM ubuntu:bionic
 # install dependencies - do not set as ENV 
 RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive TZ=America/New_York \
-	apt-get install --yes vim less net-tools make wget libboost-all-dev libdb5.3++-dev libevent-dev
+	apt-get install --yes vim less net-tools make wget software-properties-common libboost-all-dev libminiupnpc-dev libevent-dev libzmq3-dev
+
+RUN add-apt-repository --yes ppa:bitcoin/bitcoin
+
+RUN apt-get update && \
+	DEBIAN_FRONTEND=noninteractive TZ=America/New_York \
+	apt-get install --yes libdb4.8-dev libdb4.8++-dev 
 
 # create a non-root user
 RUN adduser --disabled-login --gecos "" tester
@@ -13,7 +19,7 @@ RUN adduser --disabled-login --gecos "" tester
 # run following commands from user's home directory
 WORKDIR /home/tester
 
-ENV CORE_URL "<add URL to coin .tar.gz>"
+ENV CORE_URL "https://github.com/ayyo2765/testnet-box/raw/pulsar/pulsar-v1.1.2.tar.gz"
 
 # download and install binaries
 RUN mkdir tmp \

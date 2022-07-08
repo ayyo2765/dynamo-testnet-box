@@ -18,5 +18,5 @@ alias ll='ls -l'
 alias lh='ls -lh'
 alias la='ls -Al'
 
-alias b1='dynamo-cli-test -datadir=1 '
-alias b2='dynamo-cli-test -datadir=2 '
+alias b1='pulsar-cli-test -datadir=1 '
+alias b2='pulsar-cli-test -datadir=2 '
