@@ -5,7 +5,7 @@ FROM ubuntu:bionic
 # install dependencies - do not set as ENV 
 RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive TZ=America/New_York \
-	apt-get install --yes vim less net-tools make wget software-properties-common libboost-all-dev libminiupnpc-dev libevent-dev libzmq3-dev
+	apt-get install --yes vim less net-tools make wget software-properties-common libboost-all-dev libminiupnpc-dev libevent-dev libzmq3-dev libssl1.0.0
 
 RUN add-apt-repository --yes ppa:bitcoin/bitcoin
 

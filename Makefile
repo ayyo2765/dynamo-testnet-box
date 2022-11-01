@@ -25,10 +25,10 @@ getinfo:
 	$(CLI) $(B2) -getinfo
 
 sendfrom1:
-	$(CLI) $(B1) sendtoaddress $(ADDRESS) $(AMOUNT)
+	$(CLI) $(B1) sendtoaddress $(ADDRESS) $(AMOUNT) subtractfeefromamount
 
 sendfrom2:
-	$(CLI) $(B2) sendtoaddress $(ADDRESS) $(AMOUNT)
+	$(CLI) $(B2) sendtoaddress $(ADDRESS) $(AMOUNT) subtractfeefromamount
 
 address1:
 	$(CLI) $(B1) getnewaddress $(ACCOUNT)
