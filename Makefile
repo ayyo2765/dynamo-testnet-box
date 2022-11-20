@@ -18,7 +18,7 @@ start:
 	$(D) $(B2) -daemon
 
 generate:
-	$(CLI) $(B1) -generate $(BLOCKS)
+	$(CLI) $(B1) generatetoaddress $(BLOCKS) $(ADDRESS)
 
 getinfo:
 	$(CLI) $(B1) -getinfo
@@ -47,8 +47,8 @@ stop:
 	$(CLI) $(B2) stop
 
 clean:
-	find 1/* -not -name \'$(CONFIG)\' -delete
-	find 2/* -not -name \'$(CONFIG)\' -delete
+	rm -r 1/testnet
+	rm -r 2/testnet
 
 docker-build:
 	docker build --tag $(COIN)-testnet-box .

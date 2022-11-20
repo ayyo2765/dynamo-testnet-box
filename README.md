@@ -108,6 +108,11 @@ $ make wallet2
 coin-cli -datadir=2 createwallet wallet2
 ```
 
+## Generate a wallet address for the first wallet
+```
+$ make address1
+```
+
 ## Generating blocks
 
 Normally on the live, real, network, blocks are generated, 
@@ -117,18 +122,18 @@ we are able to generate a block instantly using a simple command.
 To generate a block:
 
 ```
-$ make generate
+$ make generate ADDRESS=...
 ```
 
 To generate more than 1 block:
 
 ```
-$ make generate BLOCKS=10
+$ make generate BLOCKS=10 ADDRESS=...
 ```
 
 ## Need to generate at least 100 blocks before there will be a balance in the first wallet
 ```
-$ make generate BLOCKS=200
+$ make generate BLOCKS=101
 ```
 
 ## Verify that there is a balance on the first wallet
