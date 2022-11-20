@@ -99,17 +99,19 @@ coin-cli -datadir=2  -getinfo
 ## Creating wallets
 
 ```
+$ make wallet1
 coin-cli -datadir=1 createwallet wallet1
 ```
 
 ```
+$ make wallet2
 coin-cli -datadir=2 createwallet wallet2
 ```
 
 ## Generating blocks
 
 Normally on the live, real, network, blocks are generated, 
-on average, every 15 seconds. Since this testnet-in-box uses a private network, 
+on average, every 300 seconds. Since this testnet-in-box uses a private network, 
 we are able to generate a block instantly using a simple command.
 
 To generate a block:
@@ -143,7 +145,7 @@ $ make address2
 To send coin that you've generated to the second wallet: (be sure to change the ADDRESS value below to wallet address generated in the prior command)
 
 ```
-$ make sendfrom1 ADDRESS=dyq1... AMOUNT=10
+$ make sendfrom1 ADDRESS=... AMOUNT=10
 ```
 
 ## Does the balance show up?

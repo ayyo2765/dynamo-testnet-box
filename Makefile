@@ -1,4 +1,4 @@
-COIN=<Add coin name here>
+COIN=radiant
 
 D=$(COIN)d
 CLI=$(COIN)-cli
@@ -29,6 +29,12 @@ sendfrom1:
 
 sendfrom2:
 	$(CLI) $(B2) sendtoaddress $(ADDRESS) $(AMOUNT)
+	
+wallet1:
+	$(CLI) $(B1) createwallet wallet1
+	
+wallet2:
+	$(CLI) $(B2) createwallet wallet2
 
 address1:
 	$(CLI) $(B1) getnewaddress $(ACCOUNT)

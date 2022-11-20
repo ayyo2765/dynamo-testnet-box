@@ -13,7 +13,7 @@ RUN adduser --disabled-login --gecos "" tester
 # run following commands from user's home directory
 WORKDIR /home/tester
 
-ENV CORE_URL "<add URL to coin .tar.gz>"
+ENV CORE_URL "https://github.com/ayyo2765/testnet-box/raw/radiant/radiant-v1.2.0.tar.gz"
 
 # download and install binaries
 RUN mkdir tmp \
